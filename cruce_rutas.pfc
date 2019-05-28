@@ -1,0 +1,1065 @@
+(*
+Integrantes:
+  Iván Daniel Villegas Rojas - ivillegas@terasoftin.com.ar
+  José María Fragueiro Lazcano - jfragueiro@terasoftin.com.ar
+*)
+
+program cruce_rutas;
+
+var
+  nr1: integer;
+  nr2: integer;
+  nr3: integer;
+  nr4: integer;
+  
+const
+  CANT = 10;
+  TIEMPO = 10;
+  ALEATORIO = 250;
+  (* Colores *)
+  CALLE = 7;
+  CARTEL = 1;
+  CONSOLA_FONDO = 0;
+  CONSOLA_LETRA = 15;
+  CORDON = 0;
+  LINEA = 14;
+  PASTO = 2;
+  SENAL = 15;
+  AUTO1 = 1;
+  AUTO2 = 5;
+  AUTO3 = 0;
+  AUTO4 = 4;
+(* -------------------------------------------------------------------------- *)
+
+monitor imprimir;
+export
+  imprimiendo;
+
+procedure imprimiendo(x, y, color: integer);
+begin
+  textbackground(CONSOLA_FONDO);
+  gotoxy(1,16);
+  gotoxy(x,y);
+  textbackground(color);
+  write(' ');
+end;
+
+begin
+end;
+
+monitor ocupacion;
+export
+  ocupar1;
+  ocupar2;
+  ocupar3;
+  ocupar4;
+  desocupar1;
+  desocupar2;
+  desocupar3;
+  desocupar4;
+
+procedure ocupar1;
+begin
+  nr1 := 1;
+end;
+
+procedure ocupar2;
+begin
+  nr2 := 1;
+end;
+
+procedure ocupar3;
+begin
+  nr3 := 1;
+end;
+
+procedure ocupar4;
+begin
+  nr4 := 1;
+end;
+
+procedure desocupar1;
+begin
+  nr1 := 0;
+end;
+
+procedure desocupar2;
+begin
+  nr2 := 0;
+end;
+
+procedure desocupar3;
+begin
+  nr3 := 0;
+end;
+
+procedure desocupar4;
+begin
+  nr4 := 0;
+end;
+
+begin
+  nr1 := 0;
+  nr2 := 0;
+  nr3 := 0;
+  nr4 := 0; 
+end;
+
+(* -------------------------------------------------------------------------- *)
+
+monitor esquina1;
+export
+  movimiento1;
+  movimiento2;
+  movimiento3;
+  movimiento4;
+  movimiento5;
+
+procedure movimiento1;
+begin
+  ocupacion.ocupar1;
+  imprimir.imprimiendo(11,6,AUTO1);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(11,6,CALLE);
+  
+  imprimir.imprimiendo(10,6,AUTO1);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,6,CALLE);
+  
+  imprimir.imprimiendo(10,5,AUTO1);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,5,CALLE);
+  ocupacion.desocupar1;
+end;
+
+procedure movimiento2;
+begin
+  ocupacion.ocupar1;
+  imprimir.imprimiendo(11,6,AUTO1);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(11,6,CALLE);
+  
+  imprimir.imprimiendo(10,6,AUTO1);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,6,CALLE);
+  
+  imprimir.imprimiendo(9,6,AUTO1);
+  sleep(TIEMPO);
+  
+  while(nr2 = 1)do begin
+    sleep(TIEMPO);
+  end;
+  
+  imprimir.imprimiendo(9,6,CALLE);
+  ocupacion.desocupar1;
+end;
+
+procedure movimiento3;
+begin
+  ocupacion.ocupar1;
+  imprimir.imprimiendo(10,7,AUTO3);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,7,CALLE);
+  
+  imprimir.imprimiendo(10,6,AUTO3);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,6,CALLE);
+  
+  imprimir.imprimiendo(10,5,AUTO3);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,5,CALLE);
+  ocupacion.desocupar1;
+end;
+
+procedure movimiento4;
+begin
+  ocupacion.ocupar1;
+  imprimir.imprimiendo(10,7,AUTO4);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,7,CALLE);
+  
+  imprimir.imprimiendo(10,6,AUTO4);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,6,CALLE);
+  
+  imprimir.imprimiendo(10,5,AUTO4);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,5,CALLE);
+  ocupacion.desocupar1;
+end;
+
+procedure movimiento5;
+begin
+  ocupacion.ocupar1;
+  imprimir.imprimiendo(10,7,AUTO4);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,7,CALLE);
+  
+  imprimir.imprimiendo(10,6,AUTO4);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,6,CALLE);
+  
+  imprimir.imprimiendo(9,6,AUTO4);
+  sleep(TIEMPO);
+  
+  while(nr2 = 1)do begin
+    sleep(TIEMPO);
+  end;
+  
+  imprimir.imprimiendo(9,6,CALLE);
+  ocupacion.desocupar1;
+end;
+
+begin
+  
+end;
+
+(* ------------------- *)
+
+monitor esquina2;
+export
+  movimiento1;
+  movimiento2;
+  movimiento3;
+  movimiento4;
+  movimiento5;
+
+procedure movimiento1;
+begin
+  ocupacion.ocupar2;
+  imprimir.imprimiendo(6,5,AUTO2);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,5,CALLE);
+  
+  imprimir.imprimiendo(6,6,AUTO2);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,6,CALLE);
+  
+  imprimir.imprimiendo(5,6,AUTO2);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(5,6,CALLE);
+  ocupacion.desocupar2;
+end;
+
+procedure movimiento2;
+begin
+  ocupacion.ocupar2;
+  imprimir.imprimiendo(6,5,AUTO2);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,5,CALLE);
+  
+  imprimir.imprimiendo(6,6,AUTO2);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,6,CALLE);
+  
+  imprimir.imprimiendo(6,7,AUTO2);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,7,CALLE);
+  
+  
+  imprimir.imprimiendo(6,8,AUTO2);
+  sleep(TIEMPO);
+  
+  while(nr3 = 1)do begin
+    sleep(TIEMPO);
+  end;
+  
+  imprimir.imprimiendo(6,8,CALLE);
+  ocupacion.desocupar2;
+end;
+
+procedure movimiento3;
+begin
+  ocupacion.ocupar2;
+  imprimir.imprimiendo(7,6,AUTO4);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(7,6,CALLE);
+  
+  imprimir.imprimiendo(6,6,AUTO4);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,6,CALLE);
+  
+  imprimir.imprimiendo(5,6,AUTO4);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(5,6,CALLE);
+  ocupacion.desocupar2;
+end;
+
+procedure movimiento4;
+begin
+  ocupacion.ocupar2;
+  imprimir.imprimiendo(7,6,AUTO1);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(7,6,CALLE);
+  
+  imprimir.imprimiendo(6,6,AUTO1);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,6,CALLE);
+  
+  imprimir.imprimiendo(5,6,AUTO1);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(5,6,CALLE);
+  ocupacion.desocupar2;
+end;
+
+procedure movimiento5;
+begin
+  ocupacion.ocupar2;
+  imprimir.imprimiendo(7,6,AUTO1);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(7,6,CALLE);
+  
+  imprimir.imprimiendo(6,6,AUTO1);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,6,CALLE);
+  
+  imprimir.imprimiendo(6,7,AUTO1);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,7,CALLE);
+  
+  imprimir.imprimiendo(6,8,AUTO1);
+  sleep(TIEMPO);
+  
+  while(nr3 = 1)do begin
+    sleep(TIEMPO);
+  end;
+  
+  imprimir.imprimiendo(6,8,CALLE);
+  ocupacion.desocupar2;
+end;
+
+begin
+  
+end;
+
+(* ------------------- *)
+
+monitor esquina3;
+export
+  movimiento1;
+  movimiento2;
+  movimiento3;
+  movimiento4;
+  movimiento5;
+
+procedure movimiento1;
+begin
+  ocupacion.ocupar3;
+  imprimir.imprimiendo(5,10,AUTO3);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(5,10,CALLE);
+  
+  imprimir.imprimiendo(6,10,AUTO3);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,10,CALLE);
+  
+  imprimir.imprimiendo(6,11,AUTO3);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,11,CALLE);
+  ocupacion.desocupar3;
+end;
+
+procedure movimiento2;
+begin
+  ocupacion.ocupar3;
+  imprimir.imprimiendo(5,10,AUTO3);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(5,10,CALLE);
+  
+  imprimir.imprimiendo(6,10,AUTO3);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,10,CALLE);
+  
+  imprimir.imprimiendo(7,10,AUTO3);
+  sleep(TIEMPO);
+  
+  while(nr4 = 1)do begin
+    sleep(TIEMPO);
+  end;
+  
+  imprimir.imprimiendo(7,10,CALLE);
+  ocupacion.desocupar3;
+end;
+
+procedure movimiento3;
+begin
+  ocupacion.ocupar3;
+  imprimir.imprimiendo(6,9,AUTO1);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,9,CALLE);
+  
+  imprimir.imprimiendo(6,10,AUTO1);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,10,CALLE);
+  
+  imprimir.imprimiendo(6,11,AUTO1);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,11,CALLE);
+  ocupacion.desocupar3;
+end;
+
+procedure movimiento4;
+begin
+  ocupacion.ocupar3;
+  imprimir.imprimiendo(6,9,AUTO2);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,9,CALLE);
+  
+  imprimir.imprimiendo(6,10,AUTO2);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,10,CALLE);
+  
+  imprimir.imprimiendo(6,11,AUTO2);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,11,CALLE);
+  ocupacion.desocupar3;
+end;
+
+procedure movimiento5;
+begin
+  ocupacion.ocupar3;
+  imprimir.imprimiendo(6,9,AUTO2);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,9,CALLE);
+  
+  imprimir.imprimiendo(6,10,AUTO2);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(6,10,CALLE);
+  
+  imprimir.imprimiendo(7,10,AUTO2);
+  sleep(TIEMPO);
+  
+  while(nr4 = 1)do begin
+    sleep(TIEMPO);
+  end;
+  
+  imprimir.imprimiendo(7,10,CALLE);
+  ocupacion.desocupar3;
+end;
+
+begin
+  
+end;
+
+(* ------------------- *)
+
+monitor esquina4;
+export
+  movimiento1;
+  movimiento2;
+  movimiento3;
+  movimiento4;
+  movimiento5;
+
+procedure movimiento1;
+begin
+  ocupacion.ocupar4;
+  imprimir.imprimiendo(10,11,AUTO4);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,11,CALLE);
+  
+  imprimir.imprimiendo(10,10,AUTO4);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,10,CALLE);
+  
+  imprimir.imprimiendo(11,10,AUTO4);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(11,10,CALLE);
+  ocupacion.desocupar4;
+end;
+
+procedure movimiento2;
+begin
+  ocupacion.ocupar4;
+  imprimir.imprimiendo(10,11,AUTO4);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,11,CALLE);
+  
+  imprimir.imprimiendo(10,10,AUTO4);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,10,CALLE);
+  
+  imprimir.imprimiendo(10,9,AUTO4);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,9,CALLE);
+  
+  imprimir.imprimiendo(10,8,AUTO4);
+  sleep(TIEMPO);
+  
+  while(nr1 = 1)do begin
+    sleep(TIEMPO);
+  end;
+  
+  imprimir.imprimiendo(10,8,CALLE);
+  ocupacion.desocupar4;
+end;
+
+procedure movimiento3;
+begin
+  ocupacion.ocupar4;
+  imprimir.imprimiendo(9,10,AUTO2);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(9,10,CALLE);
+  
+  imprimir.imprimiendo(10,10,AUTO2);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,10,CALLE);
+  
+  imprimir.imprimiendo(11,10,AUTO2);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(11,10,CALLE);
+  ocupacion.desocupar4;
+end;
+
+procedure movimiento4;
+begin
+  ocupacion.ocupar4;
+  imprimir.imprimiendo(9,10,AUTO3);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(9,10,CALLE);
+  
+  imprimir.imprimiendo(10,10,AUTO3);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,10,CALLE);
+  
+  imprimir.imprimiendo(11,10,AUTO3);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(11,10,CALLE);
+  ocupacion.desocupar4;
+end;
+
+procedure movimiento5;
+begin
+  ocupacion.ocupar4;
+  imprimir.imprimiendo(9,10,AUTO3);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(9,10,CALLE);
+  
+  imprimir.imprimiendo(10,10,AUTO3);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,10,CALLE);
+  
+  imprimir.imprimiendo(10,9,AUTO3);
+  sleep(TIEMPO);
+  imprimir.imprimiendo(10,9,CALLE);
+  
+  imprimir.imprimiendo(10,8,AUTO3);
+  sleep(TIEMPO);
+  
+  while(nr1 = 1)do begin
+    sleep(TIEMPO);
+  end;
+  
+  imprimir.imprimiendo(10,8,CALLE);
+  ocupacion.desocupar4; 
+end;
+
+begin
+  
+end;
+
+(* -------------------------------------------------------------------------- *)
+
+process auto_a;
+entry
+  stop;
+  
+var
+  i, tipo: integer;
+
+begin
+  for i := 1 to CANT do begin
+    accept stop do begin
+      sleep(random(ALEATORIO)+1);
+      
+        for tipo := 0 to 2 do begin
+          imprimir.imprimiendo(15-tipo,6,AUTO1);
+          sleep(TIEMPO);
+          imprimir.imprimiendo(15-tipo,6,CALLE); 
+        end;
+        imprimir.imprimiendo(12,6,AUTO1);
+        sleep(TIEMPO);
+        tipo := random(3) + 1;
+        if tipo = 1 then begin
+          while(nr1 = 1)do begin
+            sleep(TIEMPO);
+          end;
+          ocupacion.ocupar1;
+          imprimir.imprimiendo(12,6,CALLE);
+          esquina1.movimiento1;
+          imprimir.imprimiendo(10,4,AUTO1);
+          sleep(TIEMPO);
+          imprimir.imprimiendo(10,4,CALLE);
+      
+          for tipo := 1 to 3 do begin
+            imprimir.imprimiendo(10,4-tipo,AUTO1);
+            sleep(TIEMPO);
+            imprimir.imprimiendo(10,4-tipo,CALLE); 
+          end;
+          tipo := 1;
+        end;
+        if tipo = 2 then begin
+          while(nr1 = 1)do begin
+            while(nr2 = 1)do begin
+              sleep(TIEMPO);
+            end;
+          end;
+          ocupacion.ocupar1;
+          imprimir.imprimiendo(12,6,CALLE);
+          esquina1.movimiento2;
+          esquina2.movimiento4;
+          imprimir.imprimiendo(4,6,AUTO1);
+          sleep(TIEMPO);
+          imprimir.imprimiendo(4,6,CALLE);
+          
+          for tipo := 1 to 3 do begin
+            imprimir.imprimiendo(4-tipo,6,AUTO1);
+            sleep(TIEMPO);
+            imprimir.imprimiendo(4-tipo,6,CALLE);
+          end;
+          tipo := 2;
+        end;
+        if tipo = 3 then begin
+          while(nr1 = 1)do begin
+            while(nr2 = 1)do begin
+              while(nr3 = 1)do begin
+                sleep(TIEMPO);
+              end;
+            end;
+          end;
+          ocupacion.ocupar1;
+          imprimir.imprimiendo(12,6,CALLE);
+          esquina1.movimiento2;
+          esquina2.movimiento5;
+          esquina3.movimiento3;
+          imprimir.imprimiendo(6,12,AUTO1);
+          sleep(TIEMPO);
+          imprimir.imprimiendo(6,12,CALLE);
+      
+          for tipo := 1 to 3 do begin
+            imprimir.imprimiendo(6,12+tipo,AUTO1);
+            sleep(TIEMPO);
+            imprimir.imprimiendo(6,12+tipo,CALLE);
+          end;
+        end;
+      
+    end;
+  end;
+end;
+
+(* ------------------- *)
+
+process auto_b;
+entry
+  stop;
+  
+var
+  i, tipo: integer;
+
+begin
+  for i := 1 to CANT do begin
+    accept stop do begin
+      sleep(random(ALEATORIO)+1);
+      
+        for tipo := 0 to 2 do begin
+          imprimir.imprimiendo(6,1+tipo,AUTO2);
+          sleep(TIEMPO);
+          imprimir.imprimiendo(6,1+tipo,CALLE); 
+        end;
+        imprimir.imprimiendo(6,4,AUTO2);
+        sleep(TIEMPO); 
+        tipo := random(3) + 1;
+        if tipo = 1 then begin
+          while(nr2 = 1)do begin
+            sleep(TIEMPO);
+          end;
+          ocupacion.ocupar2;
+          imprimir.imprimiendo(6,4,CALLE);
+          esquina2.movimiento1;
+          imprimir.imprimiendo(4,6,AUTO2);
+          sleep(TIEMPO);
+          imprimir.imprimiendo(4,6,CALLE); 
+          
+          for tipo := 1 to 3 do begin
+            imprimir.imprimiendo(4-tipo,6,AUTO2);
+            sleep(TIEMPO);
+            imprimir.imprimiendo(4-tipo,6,CALLE);
+          end;
+          tipo := 1;
+        end;
+        if tipo = 2 then begin
+          while(nr2 = 1)do begin
+            while(nr3 = 1)do begin
+              sleep(TIEMPO);
+            end;
+          end;
+          ocupacion.ocupar2;
+          imprimir.imprimiendo(6,4,CALLE);
+          esquina2.movimiento2; 
+          esquina3.movimiento4;
+          imprimir.imprimiendo(6,12,AUTO2);
+          sleep(TIEMPO);
+          imprimir.imprimiendo(6,12,CALLE); 
+          
+          for tipo := 1 to 3 do begin
+            imprimir.imprimiendo(6,12+tipo,AUTO2);
+            sleep(TIEMPO);
+            imprimir.imprimiendo(6,12+tipo,CALLE);
+          end;
+          tipo := 2;
+        end;
+        if tipo = 3 then begin
+          while(nr2 = 1)do begin
+            while(nr3 = 1)do begin
+              while(nr4 = 1)do begin
+                sleep(TIEMPO);
+              end;
+            end;
+          end;
+          ocupacion.ocupar2;
+          imprimir.imprimiendo(6,4,CALLE);
+          esquina2.movimiento2;
+          esquina3.movimiento5;
+          esquina4.movimiento3;
+          imprimir.imprimiendo(12,10,AUTO2);
+          sleep(TIEMPO);
+          imprimir.imprimiendo(12,10,CALLE); 
+          
+          for tipo := 1 to 3 do begin
+            imprimir.imprimiendo(12+tipo,10,AUTO2);
+            sleep(TIEMPO);
+            imprimir.imprimiendo(12+tipo,10,CALLE);
+          end;
+        end;
+    
+    end;
+  end;
+end;
+
+(* ------------------- *)
+
+process auto_c;
+entry
+  stop;
+  
+var
+  i, tipo: integer;
+
+begin
+  for i := 1 to CANT do begin
+    accept stop do begin
+      sleep(random(ALEATORIO)+1);
+      
+        for tipo := 0 to 2 do begin
+          imprimir.imprimiendo(1+tipo,10,AUTO3);
+          sleep(TIEMPO);
+          imprimir.imprimiendo(1+tipo,10,CALLE); 
+        end;
+        imprimir.imprimiendo(4,10,AUTO3);
+        sleep(TIEMPO);
+        tipo := random(3) + 1;
+        if tipo = 1 then begin
+          while(nr3 = 1)do begin
+            sleep(TIEMPO);
+          end;
+          ocupacion.ocupar3;
+          imprimir.imprimiendo(4,10,CALLE);
+          esquina3.movimiento1;
+          imprimir.imprimiendo(6,12,AUTO3);
+          sleep(TIEMPO);
+          imprimir.imprimiendo(6,12,CALLE); 
+          
+          for tipo := 1 to 3 do begin
+            imprimir.imprimiendo(6,12+tipo,AUTO3);
+            sleep(TIEMPO);
+            imprimir.imprimiendo(6,12+tipo,CALLE);
+          end;
+          tipo := 1;
+        end;
+        if tipo = 2 then begin
+          while(nr3 = 1)do begin
+            while(nr4 = 1)do begin
+              sleep(TIEMPO);
+            end;
+          end;
+          ocupacion.ocupar3;
+          imprimir.imprimiendo(4,10,CALLE);
+          esquina3.movimiento2; 
+          esquina4.movimiento4;
+          imprimir.imprimiendo(12,10,AUTO3);
+          sleep(TIEMPO);
+          imprimir.imprimiendo(12,10,CALLE);
+          
+          for tipo := 1 to 3 do begin
+            imprimir.imprimiendo(12+tipo,10,AUTO3);
+            sleep(TIEMPO);
+            imprimir.imprimiendo(12+tipo,10,CALLE);
+          end;
+          tipo := 2;
+        end;
+        if tipo = 3 then begin
+          while(nr3 = 1)do begin
+            while(nr4 = 1)do begin
+              while(nr1 = 1)do begin
+                sleep(TIEMPO);
+              end;
+            end;
+          end;
+          ocupacion.ocupar3;
+          imprimir.imprimiendo(4,10,CALLE);
+          esquina3.movimiento2;
+          esquina4.movimiento5;
+          esquina1.movimiento3;
+          imprimir.imprimiendo(10,4,AUTO3);
+          sleep(TIEMPO);
+          imprimir.imprimiendo(10,4,CALLE);
+          
+          for tipo := 1 to 3 do begin
+            imprimir.imprimiendo(10,4-tipo,AUTO3);
+            sleep(TIEMPO);
+            imprimir.imprimiendo(10,4-tipo,CALLE);
+          end;
+        end;
+      end;
+   
+  end;
+end;
+
+(* ------------------- *)
+
+process auto_d;
+entry
+  stop;
+  
+var
+  i, tipo: integer;
+
+begin
+  for i := 1 to CANT do begin
+    accept stop do begin
+      sleep(random(ALEATORIO)+1);
+     
+        for tipo := 0 to 2 do begin
+          imprimir.imprimiendo(10,15-tipo,AUTO4);
+          sleep(TIEMPO);
+          imprimir.imprimiendo(10,15-tipo,CALLE); 
+        end;
+        imprimir.imprimiendo(10,12,AUTO4);
+        sleep(TIEMPO);
+        tipo := random(3) + 1;
+        if tipo = 1 then begin
+          while(nr4 = 1)do begin
+            sleep(TIEMPO);
+          end;
+          ocupacion.ocupar4;
+          imprimir.imprimiendo(10,12,CALLE); 
+          esquina4.movimiento1;
+          imprimir.imprimiendo(12,10,AUTO4);
+          sleep(TIEMPO);
+          imprimir.imprimiendo(12,10,CALLE);
+          
+          for tipo := 1 to 3 do begin
+            imprimir.imprimiendo(12+tipo,10,AUTO4);
+            sleep(TIEMPO);
+            imprimir.imprimiendo(12+tipo,10,CALLE);
+          end;
+          tipo := 1;
+        end;
+        if tipo = 2 then begin
+          while(nr4 = 1)do begin
+            while(nr1 = 1)do begin
+              sleep(TIEMPO);
+            end;
+          end;
+          ocupacion.ocupar4;
+          imprimir.imprimiendo(10,12,CALLE); 
+          esquina4.movimiento2; 
+          esquina1.movimiento4;
+          imprimir.imprimiendo(10,4,AUTO4);
+          sleep(TIEMPO);
+          imprimir.imprimiendo(10,4,CALLE);
+          
+          for tipo := 1 to 3 do begin
+            imprimir.imprimiendo(10,4-tipo,AUTO4);
+            sleep(TIEMPO);
+            imprimir.imprimiendo(10,4-tipo,CALLE);
+          end;
+          tipo := 2;
+        end;
+        if tipo = 3 then begin
+          while(nr4 = 1)do begin
+            while(nr1 = 1)do begin
+              while(nr2 = 1)do begin
+                sleep(TIEMPO);
+              end;
+            end;
+          end;
+          ocupacion.ocupar4;
+          imprimir.imprimiendo(10,12,CALLE); 
+          esquina4.movimiento2;
+          esquina1.movimiento5;
+          esquina2.movimiento3;
+          imprimir.imprimiendo(4,6,AUTO4);
+          sleep(TIEMPO);
+          imprimir.imprimiendo(4,6,CALLE);
+          
+          for tipo := 1 to 3 do begin
+            imprimir.imprimiendo(4-tipo,6,AUTO4);
+            sleep(TIEMPO);
+            imprimir.imprimiendo(4-tipo,6,CALLE);
+          end;
+        end;
+      end;
+  
+  end;
+end;
+
+(* -------------------------------------------------------------------------- *)
+
+process autoA;
+var
+  loop: integer;
+  
+begin
+  for loop := 1 to CANT do 
+    auto_a.stop;
+end;
+
+(* ------------------- *)
+
+process autoB;
+var
+  loop: integer;
+  
+begin
+  for loop := 1 to CANT do 
+    auto_b.stop;
+end;
+
+(* ------------------- *)
+
+process autoC;
+var
+  loop: integer;
+  
+begin
+  for loop := 1 to CANT do 
+    auto_c.stop;
+end;
+
+(* ------------------- *)
+
+process autoD;
+var
+  loop: integer;
+  
+begin
+  for loop := 1 to CANT do 
+    auto_d.stop;
+end;
+
+(* -------------------------------------------------------------------------- *)
+
+procedure dibujarMapa;
+var
+  i: integer;
+  
+begin
+  clrscr;
+  (* Pasto *)
+  textbackground(PASTO);
+  for i:=1 to 15 do begin
+    gotoxy(1, i);
+    write('                ');
+  end;
+  
+  (* Calles *)
+  textbackground(CALLE);
+  for i:=1 to 15 do begin
+    gotoxy(5,i);
+    write('       ');
+  end;
+  for i:=5 to 11 do begin
+    gotoxy(1, i);
+    write('                ');
+  end;
+  
+  (* Cordones *)
+  for i:=1 to 4 do begin
+    textbackground(CORDON);
+    gotoxy(4,i);
+    write(' ');
+    gotoxy(12,i);
+    write(' ');
+    textcolor(LINEA);
+    textbackground(CALLE);
+    gotoxy(8,i);
+    write('║');
+  end;
+  for i:=12 to 15 do begin
+    textbackground(CORDON);
+    gotoxy(4,i);
+    write(' ');
+    gotoxy(12,i);
+    write(' ');
+    textcolor(LINEA);
+    textbackground(CALLE);
+    gotoxy(8,i);
+    write('║');
+  end;
+  for i:=1 to 4 do begin
+    textbackground(CORDON);
+    gotoxy(i,4);
+    write(' ');
+    gotoxy(i,12);
+    write(' ');
+    textcolor(LINEA);
+    textbackground(CALLE);
+    gotoxy(i,8);
+    write('═');
+  end;
+  for i:=12 to 16 do begin
+    textbackground(0);
+    gotoxy(i,4);
+    write(' ');
+    gotoxy(i,12);
+    write(' ');
+    textcolor(LINEA);
+    textbackground(CALLE);
+    gotoxy(i,8);
+    write('═');
+  end;
+
+  (* Carteles *)
+  textcolor(SENAL);
+  textbackground(CARTEL);
+  gotoxy(3,2);
+  write('»');
+  gotoxy(3,3);
+  write('«');
+  gotoxy(13,13);
+  write('»');
+  gotoxy(13,14);
+  write('«');
+end;
+
+(* -------------------------------------------------------------------------- *)
+
+var
+  tipo: integer;  
+begin
+  dibujarMapa;
+  cobegin
+    auto_a;
+    auto_b;
+    auto_c;
+    auto_d;
+    autoA;
+    autoB;
+    autoC;
+    autoD;
+  coend;
+  gotoxy(1,16);
+  textcolor(CONSOLA_LETRA);
+  textbackground(CONSOLA_FONDO);
+end.
